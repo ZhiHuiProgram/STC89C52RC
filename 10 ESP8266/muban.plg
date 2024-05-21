@@ -1,0 +1,153 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+C:\Users\zhang\Desktop\yuanxueshe\C51\10 ESP8266\muban.uvproj
+Project File Date:  03/04/2024
+
+<h2>Output:</h2>
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling mian.c...
+mian.c(40): error C202: 'wifi_connect': undefined identifier
+mian.c(61): error C141: syntax error near '}'
+mian.c(72): error C202: 'SUBF': undefined identifier
+mian.c(73): error C141: syntax error near '='
+mian.c(73): error C141: syntax error near '='
+mian.c(73): error C141: syntax error near '='
+mian.c(73): error C141: syntax error near ')'
+mian.c(80): error C202: 'wifi_connect': undefined identifier
+mian.c(81): error C101: ''/': invalid character constant
+mian.c(81): error C141: syntax error near '0'
+Target not created
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling mian.c...
+mian.c(40): error C202: 'wifi_connect': undefined identifier
+mian.c(61): error C141: syntax error near '}'
+mian.c(72): error C202: 'SUBF': undefined identifier
+mian.c(73): error C141: syntax error near '='
+mian.c(73): error C141: syntax error near '='
+mian.c(73): error C141: syntax error near '='
+mian.c(73): error C141: syntax error near ')'
+mian.c(80): error C202: 'wifi_connect': undefined identifier
+Target not created
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling mian.c...
+mian.c(40): error C202: 'wifi_connect': undefined identifier
+mian.c(61): error C141: syntax error near '}'
+mian.c(72): error C202: 'SUBF': undefined identifier
+mian.c(80): error C202: 'wifi_connect': undefined identifier
+Target not created
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling mian.c...
+mian.c(40): error C202: 'wifi_connect': undefined identifier
+mian.c(61): error C141: syntax error near '}'
+mian.c(80): error C202: 'wifi_connect': undefined identifier
+Target not created
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling mian.c...
+mian.c(40): error C202: 'wifi_connect': undefined identifier
+mian.c(80): error C202: 'wifi_connect': undefined identifier
+Target not created
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling mian.c...
+mian.c(40): error C202: 'wifi_connect': undefined identifier
+mian.c(80): error C202: 'wifi_connect': undefined identifier
+Target not created
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling mian.c...
+mian.c(102): warning C206: 'Delay1000ms': missing function-prototype
+mian.c(106): error C101: ''/': invalid character constant
+mian.c(106): error C141: syntax error near '0'
+Target not created
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling mian.c...
+mian.c(102): warning C206: 'Delay1000ms': missing function-prototype
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DELAY3MS?MIAN
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  DELAY1000MS
+    MODULE:  mian.obj (MIAN)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1000MS
+    MODULE:  mian.obj (MIAN)
+    ADDRESS: 00FBH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1000MS
+    MODULE:  mian.obj (MIAN)
+    ADDRESS: 0100H
+Program Size: data=86.0 xdata=0 code=825
+creating hex file from "muban"...
+"muban" - 0 Error(s), 5 Warning(s).
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling mian.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DELAY3MS?MIAN
+Program Size: data=86.0 xdata=0 code=848
+creating hex file from "muban"...
+"muban" - 0 Error(s), 1 Warning(s).
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling mian.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DELAY3MS?MIAN
+Program Size: data=86.0 xdata=0 code=847
+creating hex file from "muban"...
+"muban" - 0 Error(s), 1 Warning(s).
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling mian.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DELAY3MS?MIAN
+Program Size: data=86.0 xdata=0 code=845
+creating hex file from "muban"...
+"muban" - 0 Error(s), 1 Warning(s).
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling mian.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DELAY3MS?MIAN
+Program Size: data=86.0 xdata=0 code=838
+creating hex file from "muban"...
+"muban" - 0 Error(s), 1 Warning(s).
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling mian.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DELAY3MS?MIAN
+Program Size: data=84.0 xdata=0 code=832
+creating hex file from "muban"...
+"muban" - 0 Error(s), 1 Warning(s).
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling mian.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DELAY3MS?MIAN
+Program Size: data=84.0 xdata=0 code=832
+creating hex file from "muban"...
+"muban" - 0 Error(s), 1 Warning(s).
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling mian.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DELAY3MS?MIAN
+Program Size: data=84.0 xdata=0 code=828
+creating hex file from "muban"...
+"muban" - 0 Error(s), 1 Warning(s).

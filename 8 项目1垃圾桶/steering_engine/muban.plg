@@ -1,0 +1,119 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+C:\Users\zhang\Desktop\yuanxueshe\C51\8 ÏîÄ¿1À¬»øÍ°\steering_engine\muban.uvproj
+Project File Date:  03/01/2024
+
+<h2>Output:</h2>
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling mian.c...
+mian.c(20): error C141: syntax error near '`'
+Target not created
+Build target 'Target 1'
+compiling mian.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DELAY1000MS?MIAN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DELAY300MS?MIAN
+Program Size: data=13.0 xdata=0 code=281
+creating hex file from "muban"...
+"muban" - 0 Error(s), 2 Warning(s).
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling mian.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DELAY1000MS?MIAN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DELAY300MS?MIAN
+Program Size: data=13.0 xdata=0 code=281
+creating hex file from "muban"...
+"muban" - 0 Error(s), 2 Warning(s).
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling mian.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DELAY1000MS?MIAN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DELAY300MS?MIAN
+Program Size: data=13.0 xdata=0 code=283
+creating hex file from "muban"...
+"muban" - 0 Error(s), 2 Warning(s).
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling mian.c...
+mian.c(52): error C141: syntax error near 'void'
+mian.c(53): error C141: syntax error near '{'
+mian.c(68): error C141: syntax error near 'void'
+mian.c(69): error C141: syntax error near '{'
+mian.c(84): error C141: syntax error near ''
+Target not created
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling mian.c...
+mian.c(52): error C141: syntax error near 'void'
+mian.c(53): error C141: syntax error near '{'
+mian.c(68): error C141: syntax error near 'void'
+mian.c(69): error C141: syntax error near '{'
+mian.c(84): error C141: syntax error near ''
+Target not created
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling mian.c...
+mian.c(52): error C141: syntax error near 'void'
+mian.c(53): error C141: syntax error near '{'
+mian.c(68): error C141: syntax error near 'void'
+mian.c(69): error C141: syntax error near '{'
+mian.c(83): error C141: syntax error near ''
+Target not created
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling mian.c...
+mian.c(52): error C141: syntax error near 'void'
+mian.c(53): error C141: syntax error near '{'
+mian.c(68): error C141: syntax error near 'void'
+mian.c(69): error C141: syntax error near '{'
+mian.c(82): error C141: syntax error near ''
+Target not created
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling mian.c...
+mian.c(52): error C141: syntax error near 'void'
+mian.c(53): error C141: syntax error near '{'
+mian.c(67): error C141: syntax error near 'void'
+mian.c(68): error C141: syntax error near '{'
+mian.c(81): error C141: syntax error near ''
+Target not created
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling mian.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DELAY300MS?MIAN
+Program Size: data=13.0 xdata=0 code=286
+creating hex file from "muban"...
+"muban" - 0 Error(s), 1 Warning(s).
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling mian.c...
+mian.c(55): warning C294: unreachable code
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DELAY300MS?MIAN
+Program Size: data=13.0 xdata=0 code=286
+creating hex file from "muban"...
+"muban" - 0 Error(s), 2 Warning(s).
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling mian.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DELAY300MS?MIAN
+Program Size: data=13.0 xdata=0 code=295
+creating hex file from "muban"...
+"muban" - 0 Error(s), 1 Warning(s).

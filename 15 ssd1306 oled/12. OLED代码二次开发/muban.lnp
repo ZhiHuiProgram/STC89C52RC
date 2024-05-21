@@ -1,0 +1,5 @@
+"STARTUP.obj",
+"main.obj",
+"Oled.obj" 
+TO "muban" 
+RAMSIZE(256) 

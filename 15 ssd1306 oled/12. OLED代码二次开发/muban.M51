@@ -1,0 +1,411 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        03/14/2024  09:40:23  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+D:\KEIL\C51\BIN\BL51.EXE STARTUP.obj, main.obj, Oled.obj TO muban RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  STARTUP.obj (?C_STARTUP)
+  main.obj (MAIN)
+  Oled.obj (OLED)
+  D:\KEIL\C51\LIB\C51S.LIB (?C?CLDPTR)
+
+
+LINK MAP OF MODULE:  muban (?C_STARTUP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0007H     UNIT         _DATA_GROUP_
+            IDATA   000FH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     05F0H     UNIT         ?CO?OLED
+            CODE    05F3H     0415H     UNIT         ?CO?MAIN
+            CODE    0A08H     00DDH     UNIT         ?PR?_OLED_SHOW_CHAR?OLED
+            CODE    0AE5H     007DH     UNIT         ?PR?OLED_INIT?OLED
+            CODE    0B62H     005CH     UNIT         ?PR?MAIN?MAIN
+            CODE    0BBEH     0031H     UNIT         ?PR?_OLED_SHOW_STR?OLED
+            CODE    0BEFH     0027H     UNIT         ?PR?_IIC_SEND_BYTE?OLED
+            CODE    0C16H     001EH     UNIT         ?PR?OLED_CLEAR?OLED
+            CODE    0C34H     001BH     UNIT         ?PR?IIC_ACK?OLED
+            CODE    0C4FH     001BH     UNIT         ?PR?_OLED_WRITE_DATA?OLED
+            CODE    0C6AH     0019H     UNIT         ?C?LIB_CODE
+            CODE    0C83H     0013H     UNIT         ?PR?_OLED_WRITE_CMD?OLED
+            CODE    0C96H     000EH     UNIT         ?PR?DELAY1000MS?MAIN
+            CODE    0CA4H     000CH     UNIT         ?C_C51STARTUP
+            CODE    0CB0H     000BH     UNIT         ?PR?IIC_START?OLED
+            CODE    0CBBH     000BH     UNIT         ?PR?IIC_STOP?OLED
+
+
+
+OVERLAY MAP OF MODULE:   muban (?C_STARTUP)
+
+
+SEGMENT                             DATA_GROUP 
+  +--> CALLED SEGMENT             START    LENGTH
+-------------------------------------------------
+?C_C51STARTUP                     -----    -----
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN                     -----    -----
+  +--> ?PR?OLED_INIT?OLED
+  +--> ?PR?OLED_CLEAR?OLED
+BL51 BANKED LINKER/LOCATER V6.22                                                      03/14/2024  09:40:23  PAGE 2
+
+
+  +--> ?CO?MAIN
+  +--> ?PR?_OLED_SHOW_STR?OLED
+  +--> ?PR?DELAY1000MS?MAIN
+
+?PR?OLED_INIT?OLED                -----    -----
+  +--> ?PR?_OLED_WRITE_CMD?OLED
+
+?PR?_OLED_WRITE_CMD?OLED          -----    -----
+  +--> ?PR?_IIC_SEND_BYTE?OLED
+  +--> ?PR?IIC_ACK?OLED
+  +--> ?PR?IIC_STOP?OLED
+
+?PR?_IIC_SEND_BYTE?OLED           -----    -----
+  +--> ?PR?IIC_START?OLED
+
+?PR?IIC_ACK?OLED                  -----    -----
+  +--> ?PR?_IIC_SEND_BYTE?OLED
+
+?PR?OLED_CLEAR?OLED               -----    -----
+  +--> ?PR?_OLED_WRITE_CMD?OLED
+  +--> ?PR?_OLED_WRITE_DATA?OLED
+
+?PR?_OLED_WRITE_DATA?OLED         -----    -----
+  +--> ?CO?OLED
+  +--> ?PR?_IIC_SEND_BYTE?OLED
+  +--> ?PR?IIC_ACK?OLED
+  +--> ?PR?IIC_STOP?OLED
+
+?PR?_OLED_SHOW_STR?OLED           0008H    0005H
+  +--> ?PR?_OLED_SHOW_CHAR?OLED
+
+?PR?_OLED_SHOW_CHAR?OLED          000DH    0002H
+  +--> ?PR?_OLED_WRITE_CMD?OLED
+  +--> ?PR?_OLED_WRITE_DATA?OLED
+
+
+
+SYMBOL TABLE OF MODULE:  muban (?C_STARTUP)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ?C_STARTUP
+  C:0CA4H         SEGMENT       ?C_C51STARTUP
+  I:000FH         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:0CA7H         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0100H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+BL51 BANKED LINKER/LOCATER V6.22                                                      03/14/2024  09:40:23  PAGE 3
+
+
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:0CA4H         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:0000H         SYMBOL        XDATALEN
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         126
+  C:0CA4H         LINE#         133
+  C:0CA6H         LINE#         134
+  C:0CA7H         LINE#         135
+  C:0CA8H         LINE#         136
+  C:0CAAH         LINE#         185
+  C:0CADH         LINE#         196
+  -------         ENDMOD        ?C_STARTUP
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00B0H         PUBLIC        P3
+  C:0608H         PUBLIC        wenhao
+  D:00A8H         PUBLIC        IE
+  C:0C96H         PUBLIC        Delay1000ms
+  D:00B8H         PUBLIC        IP
+  C:0B62H         PUBLIC        main
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  D:00C8H         PUBLIC        T2CON
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          DELAY1000MS
+  -------         DO            
+  D:0007H         SYMBOL        i
+  D:0006H         SYMBOL        j
+  D:0005H         SYMBOL        k
+  -------         ENDDO         
+  C:0C96H         LINE#         68
+  C:0C96H         LINE#         69
+  C:0C96H         LINE#         72
+  C:0C97H         LINE#         73
+  C:0C99H         LINE#         74
+  C:0C9BH         LINE#         75
+  C:0C9DH         LINE#         77
+  C:0C9DH         LINE#         79
+  C:0C9DH         LINE#         80
+  C:0C9FH         LINE#         81
+  C:0CA1H         LINE#         82
+  C:0CA3H         LINE#         83
+  -------         ENDPROC       DELAY1000MS
+  -------         PROC          MAIN
+  C:0B62H         LINE#         85
+  C:0B62H         LINE#         86
+  C:0B62H         LINE#         88
+  C:0B65H         LINE#         89
+  C:0B68H         LINE#         90
+BL51 BANKED LINKER/LOCATER V6.22                                                      03/14/2024  09:40:23  PAGE 4
+
+
+  C:0B75H         LINE#         91
+  C:0B82H         LINE#         93
+  C:0B82H         LINE#         94
+  C:0B8FH         LINE#         95
+  C:0B9CH         LINE#         96
+  C:0B9FH         LINE#         97
+  C:0BACH         LINE#         98
+  C:0BB9H         LINE#         99
+  C:0BBCH         LINE#         100
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        OLED
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00B0H         PUBLIC        P3
+  C:0C3FH         PUBLIC        IIC_ACK
+  D:00A8H         PUBLIC        IE
+  D:00B8H         PUBLIC        IP
+  C:0BBEH         PUBLIC        _Oled_Show_Str
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  C:0BF6H         PUBLIC        _IIC_Send_Byte
+  B:00B0H.4       PUBLIC        sda
+  C:0003H         PUBLIC        F8X16
+  B:00B0H.5       PUBLIC        scl
+  C:0CB0H         PUBLIC        IIC_Start
+  C:0C16H         PUBLIC        Oled_Clear
+  C:0C5CH         PUBLIC        _Oled_Write_Data
+  C:0CBBH         PUBLIC        IIC_Stop
+  D:00C8H         PUBLIC        T2CON
+  C:0A08H         PUBLIC        _Oled_Show_Char
+  C:0C88H         PUBLIC        _Oled_Write_Cmd
+  D:00D0H         PUBLIC        PSW
+  C:0AE5H         PUBLIC        Oled_Init
+  -------         PROC          IIC_START
+  C:0CB0H         LINE#         9
+  C:0CB0H         LINE#         10
+  C:0CB0H         LINE#         11
+  C:0CB2H         LINE#         12
+  C:0CB4H         LINE#         13
+  C:0CB6H         LINE#         14
+  C:0CB7H         LINE#         15
+  C:0CB9H         LINE#         16
+  C:0CBAH         LINE#         17
+  -------         ENDPROC       IIC_START
+  -------         PROC          IIC_STOP
+  C:0CBBH         LINE#         19
+  C:0CBBH         LINE#         20
+  C:0CBBH         LINE#         21
+  C:0CBDH         LINE#         22
+  C:0CBFH         LINE#         23
+  C:0CC1H         LINE#         24
+  C:0CC2H         LINE#         25
+  C:0CC4H         LINE#         26
+  C:0CC5H         LINE#         27
+  -------         ENDPROC       IIC_STOP
+BL51 BANKED LINKER/LOCATER V6.22                                                      03/14/2024  09:40:23  PAGE 5
+
+
+  -------         PROC          L?0033
+  -------         ENDPROC       L?0033
+  -------         PROC          IIC_ACK
+  -------         DO            
+  D:0007H         SYMBOL        flag
+  -------         ENDDO         
+  C:0C3FH         LINE#         29
+  C:0C3FH         LINE#         30
+  C:0C3FH         LINE#         32
+  C:0C41H         LINE#         33
+  C:0C42H         LINE#         34
+  C:0C44H         LINE#         35
+  C:0C45H         LINE#         36
+  C:0C4AH         LINE#         37
+  C:0C4BH         LINE#         38
+  C:0C4DH         LINE#         39
+  C:0C4EH         LINE#         41
+  C:0C4EH         LINE#         42
+  -------         ENDPROC       IIC_ACK
+  -------         PROC          L?0037
+  -------         ENDPROC       L?0037
+  -------         PROC          _IIC_SEND_BYTE
+  D:0007H         SYMBOL        dataSend
+  -------         DO            
+  D:0002H         SYMBOL        i
+  -------         ENDDO         
+  C:0BF6H         LINE#         44
+  C:0BF6H         LINE#         45
+  C:0BF6H         LINE#         48
+  C:0BF9H         LINE#         49
+  C:0BFBH         LINE#         50
+  C:0BFFH         LINE#         51
+  C:0C00H         LINE#         52
+  C:0C02H         LINE#         53
+  C:0C03H         LINE#         54
+  C:0C05H         LINE#         55
+  C:0C06H         LINE#         56
+  C:0C0AH         LINE#         57
+  C:0C15H         LINE#         58
+  -------         ENDPROC       _IIC_SEND_BYTE
+  C:0C83H         SYMBOL        L?0036
+  -------         PROC          L?0035
+  -------         ENDPROC       L?0035
+  C:0C83H         SYMBOL        L?0036
+  -------         PROC          _OLED_WRITE_CMD
+  D:0006H         SYMBOL        dataCmd
+  C:0C88H         LINE#         60
+  C:0C88H         LINE#         61
+  C:0C88H         LINE#         63
+  C:0C88H         LINE#         66
+  C:0C8BH         LINE#         68
+  C:0C8EH         LINE#         70
+  C:0C90H         LINE#         72
+  C:0C90H         LINE#         74
+  C:0C90H         LINE#         76
+  C:0C93H         LINE#         78
+  -------         ENDPROC       _OLED_WRITE_CMD
+BL51 BANKED LINKER/LOCATER V6.22                                                      03/14/2024  09:40:23  PAGE 6
+
+
+  -------         PROC          L?0034
+  -------         ENDPROC       L?0034
+  -------         PROC          _OLED_WRITE_DATA
+  D:0006H         SYMBOL        dataData
+  C:0C5CH         LINE#         81
+  C:0C5CH         LINE#         82
+  C:0C5CH         LINE#         84
+  C:0C5CH         LINE#         87
+  C:0C5FH         LINE#         89
+  C:0C62H         LINE#         91
+  C:0C64H         LINE#         93
+  C:0C64H         LINE#         95
+  C:0C64H         LINE#         97
+  C:0C67H         LINE#         99
+  -------         ENDPROC       _OLED_WRITE_DATA
+  -------         PROC          OLED_INIT
+  C:0AE5H         LINE#         103
+  C:0AE5H         LINE#         104
+  C:0AE7H         LINE#         105
+  C:0AEAH         LINE#         106
+  C:0AEFH         LINE#         107
+  C:0AF4H         LINE#         108
+  C:0AF9H         LINE#         109
+  C:0AFEH         LINE#         110
+  C:0B03H         LINE#         111
+  C:0B08H         LINE#         112
+  C:0B0DH         LINE#         113
+  C:0B12H         LINE#         114
+  C:0B17H         LINE#         115
+  C:0B1CH         LINE#         116
+  C:0B1EH         LINE#         117
+  C:0B21H         LINE#         119
+  C:0B26H         LINE#         120
+  C:0B2BH         LINE#         122
+  C:0B30H         LINE#         123
+  C:0B35H         LINE#         125
+  C:0B3AH         LINE#         126
+  C:0B3FH         LINE#         128
+  C:0B44H         LINE#         129
+  C:0B49H         LINE#         131
+  C:0B4EH         LINE#         132
+  C:0B53H         LINE#         134
+  C:0B58H         LINE#         135
+  C:0B5DH         LINE#         137
+  -------         ENDPROC       OLED_INIT
+  -------         PROC          OLED_CLEAR
+  -------         DO            
+  D:0005H         SYMBOL        i
+  D:0004H         SYMBOL        j
+  -------         ENDDO         
+  C:0C16H         LINE#         140
+  C:0C16H         LINE#         141
+  C:0C16H         LINE#         144
+  C:0C18H         LINE#         145
+  C:0C1CH         LINE#         147
+  C:0C1FH         LINE#         148
+  C:0C24H         LINE#         150
+BL51 BANKED LINKER/LOCATER V6.22                                                      03/14/2024  09:40:23  PAGE 7
+
+
+  C:0C26H         LINE#         151
+  C:0C2BH         LINE#         152
+  C:0C2FH         LINE#         153
+  C:0C33H         LINE#         154
+  -------         ENDPROC       OLED_CLEAR
+  -------         PROC          _OLED_SHOW_CHAR
+  D:000DH         SYMBOL        row
+  D:000EH         SYMBOL        col
+  D:0001H         SYMBOL        oledChar
+  -------         DO            
+  D:0004H         SYMBOL        i
+  -------         ENDDO         
+  C:0A08H         LINE#         156
+  C:0A0EH         LINE#         158
+  C:0A18H         LINE#         159
+  C:0A20H         LINE#         160
+  C:0A2FH         LINE#         161
+  C:0A70H         LINE#         162
+  C:0A73H         LINE#         163
+  C:0A7AH         LINE#         165
+  C:0A84H         LINE#         166
+  C:0A8CH         LINE#         167
+  C:0A9BH         LINE#         168
+  C:0ADAH         LINE#         169
+  C:0ADDH         LINE#         170
+  C:0AE4H         LINE#         171
+  -------         ENDPROC       _OLED_SHOW_CHAR
+  -------         PROC          _OLED_SHOW_STR
+  D:0008H         SYMBOL        row
+  D:0009H         SYMBOL        col
+  D:000AH         SYMBOL        str
+  C:0BBEH         LINE#         180
+  C:0BC8H         LINE#         181
+  C:0BD4H         LINE#         182
+  C:0BDBH         LINE#         183
+  C:0BE6H         LINE#         184
+  C:0BECH         LINE#         185
+  C:0BEEH         LINE#         186
+  -------         ENDPROC       _OLED_SHOW_STR
+  -------         ENDMOD        OLED
+
+  -------         MODULE        ?C?CLDPTR
+  C:0C6AH         PUBLIC        ?C?CLDPTR
+  -------         ENDMOD        ?C?CLDPTR
+
+Program Size: data=16.0 xdata=0 code=3270
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

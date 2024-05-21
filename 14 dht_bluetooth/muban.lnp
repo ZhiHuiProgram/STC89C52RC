@@ -1,0 +1,7 @@
+"STARTUP.obj",
+"mian.obj",
+"delay.obj",
+"lcd1602.obj",
+"uart.obj",
+"dht.obj" 
+TO "muban" 

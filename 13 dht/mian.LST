@@ -1,0 +1,368 @@
+C51 COMPILER V9.52.0.0   MIAN                                                              03/08/2024 14:12:36 PAGE 1   
+
+
+C51 COMPILER V9.52.0.0, COMPILATION OF MODULE MIAN
+OBJECT MODULE PLACED IN mian.OBJ
+COMPILER INVOKED BY: D:\keil\C51\BIN\C51.EXE mian.c BROWSE DEBUG OBJECTEXTEND TABS(2)
+
+line level    source
+
+   1          #include "reg52.h"
+   2          #include "intrins.h"
+   3          #include <string.h>
+   4          #define lcddata P2
+   5          sbit led6 = P1^5;//D4 led
+   6          sbit led5 = P1^7;//D5 led
+   7          sbit dht = P1^6;
+   8          sbit RS=P0^7;
+   9          sbit RW=P0^6;
+  10          sbit EN=P0^5;
+  11          sbit relay = P1^0;
+  12          sfr AUXR = 0x8e;
+  13          
+  14          //dht11
+  15          char array[5];
+  16          char temperature[16];
+  17          char humidity[16];
+  18          void dht11show();
+  19          //dht11
+  20          void check_connect();
+  21          void read_data();
+  22          void Delay2000ms();
+  23          void Delay60us();
+  24          void Delay20ms();
+  25          void Delay30ms();
+  26          void Delay1000ms();
+  27          void Delay40us();
+  28          void uart_init();
+  29          void sendstring(char *pp);
+  30          void sendbyte(char data1);
+  31          //lcd1602
+  32          void Delay15ms();
+  33          void Delay5ms();
+  34          void write_data(char cmd);
+  35          void write_command(char cmd);
+  36          void lcdinit();
+  37          void check_busy();
+  38          void writedataline(char position , char array , char latter[]);
+  39          
+  40          int main(){
+  41   1        char Tp=0x02;
+  42   1        char Hp=0x02;
+  43   1        uart_init();
+  44   1        //lcd1602
+  45   1        Delay2000ms();
+  46   1        lcdinit();
+  47   1        Delay15ms();
+  48   1        while(1){
+  49   2          Delay1000ms();
+  50   2          lcdinit();
+  51   2          read_data();
+  52   2          dht11show();
+  53   2          writedataline(Tp,1,temperature);
+  54   2          writedataline(Hp,2,humidity);
+  55   2        //  writedataline(Tp,1,"hello");
+C51 COMPILER V9.52.0.0   MIAN                                                              03/08/2024 14:12:36 PAGE 2   
+
+  56   2      //    writedataline(Hp,2,"world");
+  57   2          if(array[0] > 50){
+  58   3            relay = 0;
+  59   3          }else{
+  60   3            relay = 1;
+  61   3          }
+  62   2        }
+  63   1      }
+  64          /*  
+  65              sendbyte(array[2]/10+0x30);
+  66              sendbyte(array[2]%10+0x30);
+  67              sendstring("\r\n");
+  68              sendstring("H:");
+  69              sendbyte(array[0]/10 + 0x30);//43 a 
+  70              sendbyte(array[0]%10 + 0x30);
+  71              sendbyte('.');
+  72              sendbyte(array[1]/10 + 0x30);//43 a 
+  73              sendbyte(array[1]%10 + 0x30); 
+  74              sendstring("\r\n"); 
+  75              sendstring("T:");
+  76              sendbyte(array[2]/10 + 0x30);//43 a 
+  77              sendbyte(array[2]%10 + 0x30); 
+  78              sendbyte('.');
+  79              sendbyte(array[3]/10 + 0x30);//43 a 
+  80              sendbyte(array[3]%10 + 0x30);     
+  81              sendstring("\r\n"); 
+  82          */    
+  83          
+  84          void check_connect(){
+  85   1        dht=1;
+  86   1        dht = 0;
+  87   1        Delay30ms();
+  88   1        dht = 1;
+  89   1      //  Delay60us();
+  90   1        while(dht);
+  91   1        while(!dht);
+  92   1        while(dht);
+  93   1      
+  94   1      }
+  95          void read_data(){
+  96   1        int i,j;
+  97   1        char tmp;
+  98   1        char flag;
+  99   1        check_connect();
+ 100   1        for(i=0;i<5;i++){
+ 101   2          for(j=0;j<8;j++){
+ 102   3            while(!dht);
+ 103   3            Delay40us();
+ 104   3            if(dht == 1){
+ 105   4              flag=1;
+ 106   4              while(dht);
+ 107   4        //    }if(dht == 0){
+ 108   4            }else{
+ 109   4              flag=0;
+ 110   4            }
+ 111   3            tmp = tmp << 1;
+ 112   3            tmp |= flag;
+ 113   3          }
+ 114   2          array[i] = tmp;
+ 115   2        }
+ 116   1      }
+ 117          void Delay2000ms()    //@11.0592MHz
+C51 COMPILER V9.52.0.0   MIAN                                                              03/08/2024 14:12:36 PAGE 3   
+
+ 118          {
+ 119   1        unsigned char i, j, k;
+ 120   1      
+ 121   1        _nop_();
+ 122   1        i = 15;
+ 123   1        j = 2;
+ 124   1        k = 235;
+ 125   1        do
+ 126   1        {
+ 127   2          do
+ 128   2          {
+ 129   3            while (--k);
+ 130   3          } while (--j);
+ 131   2        } while (--i);
+ 132   1      }
+ 133          void Delay20ms()    //@11.0592MHz
+ 134          {
+ 135   1        unsigned char i, j;
+ 136   1      
+ 137   1        i = 36;
+ 138   1        j = 217;
+ 139   1        do
+ 140   1        {
+ 141   2          while (--j);
+ 142   2        } while (--i);
+ 143   1      }
+ 144          void Delay60us()    //@11.0592MHz
+ 145          {
+ 146   1        unsigned char i;
+ 147   1      
+ 148   1        i = 25;
+ 149   1        while (--i);
+ 150   1      }
+ 151          void Delay40us()    //@11.0592MHz
+ 152          {
+ 153   1        unsigned char i;
+ 154   1      
+ 155   1        _nop_();
+ 156   1        i = 15;
+ 157   1        while (--i);
+ 158   1      }
+ 159          void uart_init(){
+ 160   1        AUXR = 0X01;
+ 161   1        SCON = 0x40;
+ 162   1        TMOD &= 0xf0;
+ 163   1        TMOD |= 0x20;
+ 164   1        TH1 = 0XFD;
+ 165   1        TH1 = 0XFD;
+ 166   1        TR1 = 1;
+ 167   1      }
+ 168          void sendbyte(char data1){
+ 169   1        SBUF = data1;
+ 170   1        while(!TI);
+ 171   1        TI = 0;
+ 172   1      }
+ 173          void sendstring(char *pp){
+ 174   1        while(*pp != '\0'){
+ 175   2          sendbyte(*pp);
+ 176   2          pp++;
+ 177   2        }
+ 178   1      }
+ 179          void dht11show(){
+C51 COMPILER V9.52.0.0   MIAN                                                              03/08/2024 14:12:36 PAGE 4   
+
+ 180   1        temperature[0]='T';
+ 181   1        temperature[1]=':';
+ 182   1        temperature[2]=array[2]/10+0x30;
+ 183   1        temperature[3]=array[2]%10+0x30;
+ 184   1        temperature[4]='.';
+ 185   1        temperature[5]=array[3]/10+0x30;
+ 186   1        temperature[6]=array[3]%10+0x30;
+ 187   1        temperature[7]='C';
+ 188   1        humidity[0]='H';
+ 189   1        humidity[1]=':';
+ 190   1        humidity[2]=array[0]/10+0x30;
+ 191   1        humidity[3]=array[0]/10+0x30;
+ 192   1        humidity[4]='.';
+ 193   1        humidity[5]=array[1]/10+0x30;
+ 194   1        humidity[6]=array[1]/10+0x30;
+ 195   1        humidity[7]='%';
+ 196   1      }
+ 197          void Delay1000ms()    //@11.0592MHz
+ 198          {
+ 199   1        unsigned char i, j, k;
+ 200   1      
+ 201   1        _nop_();
+ 202   1        i = 8;
+ 203   1        j = 1;
+ 204   1        k = 243;
+ 205   1        do
+ 206   1        {
+ 207   2          do
+ 208   2          {
+ 209   3            while (--k);
+ 210   3          } while (--j);
+ 211   2        } while (--i);
+ 212   1      }
+ 213          void Delay30ms()    //@11.0592MHz
+ 214          {
+ 215   1        unsigned char i, j;
+ 216   1      
+ 217   1        i = 54;
+ 218   1        j = 199;
+ 219   1        do
+ 220   1        {
+ 221   2          while (--j);
+ 222   2        } while (--i);
+ 223   1      }
+ 224          void writedataline(char position , char array , char latter[]){
+ 225   1        char arrays;
+ 226   1        int i = 0;
+ 227   1        switch(array){
+ 228   2          case 1:
+ 229   2            arrays = position+0x80;
+ 230   2            write_command(arrays);
+ 231   2            while(*latter){
+ 232   3              write_data(*latter);
+ 233   3              latter++;
+ 234   3            }
+ 235   2            break;
+ 236   2          case 2:
+ 237   2            arrays = position+0x40+0x80;
+ 238   2            write_command(arrays);
+ 239   2      /*    while(i<len){
+ 240   2            write_data(latter[i]);
+ 241   2          }*/
+C51 COMPILER V9.52.0.0   MIAN                                                              03/08/2024 14:12:36 PAGE 5   
+
+ 242   2            while(*latter){
+ 243   3              write_data(*latter);
+ 244   3              latter++;
+ 245   3            }
+ 246   2            break;
+ 247   2        }
+ 248   1      }
+ 249          void write_data(char cmd){
+ 250   1        check_busy();
+ 251   1        RS =1;
+ 252   1        RW = 0;
+ 253   1        
+ 254   1          EN = 0;
+ 255   1        _nop_();
+ 256   1        lcddata = cmd;
+ 257   1          _nop_();
+ 258   1        EN = 1;
+ 259   1        _nop_();
+ 260   1        _nop_();
+ 261   1        EN = 0;
+ 262   1        _nop_();
+ 263   1      }
+ 264          void write_command(char cmd){
+ 265   1        check_busy();
+ 266   1        RS =0;
+ 267   1        RW = 0;
+ 268   1        
+ 269   1        EN = 0;
+ 270   1        _nop_();
+ 271   1        lcddata = cmd;
+ 272   1          _nop_();
+ 273   1        EN = 1;
+ 274   1        _nop_();
+ 275   1        _nop_();
+ 276   1        EN = 0;
+ 277   1        _nop_();
+ 278   1      }
+ 279          void lcdinit(){
+ 280   1        Delay15ms();
+ 281   1        write_command(0x38);
+ 282   1        Delay5ms();
+ 283   1        write_command(0x38);
+ 284   1        Delay5ms();
+ 285   1        write_command(0x38);
+ 286   1        Delay5ms();
+ 287   1        write_command(0x38);
+ 288   1        write_command(0x08);
+ 289   1        write_command(0x01);
+ 290   1        write_command(0x06);
+ 291   1        write_command(0x0c);
+ 292   1        
+ 293   1      }
+ 294          void check_busy(){
+ 295   1        char tmp = 0x80;
+ 296   1        lcddata = 0x80;
+ 297   1      //  while(read_command(tmp) & 0x80);
+ 298   1        while(tmp & 0x80){
+ 299   2          RS =0;
+ 300   2          RW = 1;
+ 301   2        
+ 302   2          EN = 0;
+ 303   2          _nop_();
+C51 COMPILER V9.52.0.0   MIAN                                                              03/08/2024 14:12:36 PAGE 6   
+
+ 304   2      
+ 305   2          EN = 1;
+ 306   2          _nop_();
+ 307   2          _nop_();
+ 308   2          tmp = lcddata;
+ 309   2          EN = 0;
+ 310   2          _nop_();
+ 311   2        }
+ 312   1      }
+ 313          void Delay15ms()    //@11.0592MHz
+ 314          {
+ 315   1        unsigned char i, j;
+ 316   1      
+ 317   1        i = 27;
+ 318   1        j = 226;
+ 319   1        do
+ 320   1        {
+ 321   2          while (--j);
+ 322   2        } while (--i);
+ 323   1      }
+ 324          void Delay5ms()   //@11.0592MHz
+ 325          {
+ 326   1        unsigned char i, j;
+ 327   1      
+ 328   1        i = 9;
+ 329   1        j = 244;
+ 330   1        do
+ 331   1        {
+ 332   2          while (--j);
+ 333   2        } while (--i);
+ 334   1      }
+ 335            
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    637    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     37      17
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

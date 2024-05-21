@@ -1,0 +1,18 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+C:\Users\zhang\Desktop\yuanxueshe\C51\6 steering_engine\muban.uvproj
+Project File Date:  05/09/2024
+
+<h2>Output:</h2>
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling mian.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DELAY300MS?MIAN
+Program Size: data=13.0 xdata=0 code=307
+creating hex file from "muban"...
+"muban" - 0 Error(s), 1 Warning(s).

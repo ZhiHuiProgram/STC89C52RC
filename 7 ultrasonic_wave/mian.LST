@@ -1,0 +1,94 @@
+C51 COMPILER V9.52.0.0   MIAN                                                              03/12/2024 14:42:21 PAGE 1   
+
+
+C51 COMPILER V9.52.0.0, COMPILATION OF MODULE MIAN
+OBJECT MODULE PLACED IN mian.OBJ
+COMPILER INVOKED BY: D:\keil\C51\BIN\C51.EXE mian.c BROWSE DEBUG OBJECTEXTEND TABS(2)
+
+line level    source
+
+   1          #include"reg52.h"
+   2          #include"intrins.h"
+   3          sbit D1 = P1^0;
+   4          sbit D2 = P1^1;
+   5          sbit D3 = P1^2;
+   6          sbit D4 = P1^3;
+   7          sbit D5 = P1^4;
+   8          sbit D6 = P1^5;
+   9          sbit D7 = P1^6;
+  10          sbit D8 = P1^7;
+  11          sbit trig = P2^5;
+  12          sbit echo = P2^6;
+  13          void Delay30ms();
+  14          void Delay15us();
+  15          void steering_engine();
+  16          void T0init(){
+  17   1        TMOD &= 0xF0;
+  18   1        TMOD |= 0x01;
+  19   1        TH0 =0;
+  20   1        TL0 =0;
+  21   1      }
+  22          void startHC(){
+  23   1        trig = 0;
+  24   1        trig = 1;
+  25   1        Delay15us();
+  26   1        trig = 0;
+  27   1      }
+  28          void main(){
+  29   1        int lednumber=0;
+  30   1        double distance;
+  31   1        double time;
+  32   1        T0init();
+  33   1        while(1){
+  34   2          Delay30ms();
+  35   2          startHC();
+  36   2          while(echo == 0);
+  37   2          TR0 = 1;
+  38   2          while(echo == 1);
+  39   2          TR0 = 0;
+  40   2          time = (TL0+TH0*256)* 1.085;
+  41   2          distance = time*0.017;
+  42   2          lednumber = distance/10;
+  43   2          if(lednumber<256){
+  44   3            P1 = lednumber;
+  45   3          }else {
+  46   3            P1 = 0x00;
+  47   3          }
+  48   2          TH0 = 0;
+  49   2          TL0 = 0;
+  50   2        }
+  51   1      }
+  52          void Delay15us()    //@11.0592MHz
+  53          {
+  54   1        unsigned char i;
+  55   1      
+C51 COMPILER V9.52.0.0   MIAN                                                              03/12/2024 14:42:21 PAGE 2   
+
+  56   1        i = 4;
+  57   1        while (--i);
+  58   1      }
+  59          void Delay30ms()    //@11.0592MHz
+  60          {
+  61   1        unsigned char i, j;
+  62   1      
+  63   1        i = 54;
+  64   1        j = 199;
+  65   1        do
+  66   1        {
+  67   2          while (--j);
+  68   2        } while (--i);
+  69   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    157    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       6
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

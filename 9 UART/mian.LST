@@ -1,0 +1,170 @@
+C51 COMPILER V9.52.0.0   MIAN                                                              03/05/2024 21:26:38 PAGE 1   
+
+
+C51 COMPILER V9.52.0.0, COMPILATION OF MODULE MIAN
+OBJECT MODULE PLACED IN mian.OBJ
+COMPILER INVOKED BY: D:\keil\C51\BIN\C51.EXE mian.c BROWSE DEBUG OBJECTEXTEND TABS(2)
+
+line level    source
+
+   1          #include"reg52.h"
+   2          #include"intrins.h"
+   3          #include<string.h>
+   4          #include<stdlib.h>
+   5          
+   6          #define num 12
+   7          #define SIZE 12
+   8          sbit led6 = P3^6;//D4 led
+   9          sbit led5 = P3^7;//D5 led
+  10          sfr AUXR = 0x8e;
+  11          int mark=0;
+  12          
+  13          char cmd;
+  14          char array[num];
+  15          char reset[]="AT+RST";
+  16          char uart[]="AT+UART=9600,8,1,0,0\r\n";
+  17          code char wifi[]="AT+CWJAP=\"YXS1017\",\"yuanxueshe1017\"\r\n";
+  18          code char tcp[]="AT+CIPSTART=\"TCP\",\"192.168.1.210\",8880\r\n";
+  19          char TCMS[]  = "AT+CIPMODE=1\r\n";
+  20          char SJCS[]  = "AT+CIPSEND\r\n";
+  21          
+  22          void uart_init();
+  23          void Delay2000ms();
+  24          void Delay3ms();
+  25          void sendbyte(char data1);
+  26          void sendstring(char *pp);
+  27          void INTRinit();
+  28          void INTR();
+  29          
+  30          //char cmd[SIZE];
+  31          
+  32          void main(){
+  33   1        uart_init();
+  34   1        INTRinit();
+  35   1        led6 = 1;
+  36   1        mark = 0;
+  37   1        Delay2000ms();
+  38   1        while(1){
+  39   2          led5 = 0;
+  40   2          Delay2000ms();
+  41   2        if(mark == 0){
+  42   3          led6 = 0;
+  43   3        //Delay2000ms();
+  44   3          //sendstring(reset);
+  45   3      //    sendstring("fuck!\r\n");
+  46   3          //Delay2000ms();
+  47   3          //sendstring(uart);
+  48   3          //Delay2000ms();
+  49   3          sendstring(wifi);
+  50   3          Delay2000ms();
+  51   3            Delay2000ms();
+  52   3                Delay2000ms();
+  53   3          sendstring(tcp);
+  54   3          Delay2000ms();
+  55   3              Delay2000ms();
+C51 COMPILER V9.52.0.0   MIAN                                                              03/05/2024 21:26:38 PAGE 2   
+
+  56   3                Delay2000ms();
+  57   3          sendstring(TCMS);
+  58   3          Delay2000ms();
+  59   3              Delay2000ms();
+  60   3                Delay2000ms();
+  61   3          sendstring(SJCS);
+  62   3          Delay2000ms();
+  63   3              Delay2000ms();
+  64   3                    Delay2000ms();
+  65   3          led5 = 0;
+  66   3          mark =1;
+  67   3        }else{
+  68   3          sendstring("fuck!\r\n");
+  69   3              Delay2000ms();
+  70   3        }
+  71   2        }
+  72   1      }
+  73          void INTRinit(){
+  74   1        EA = 1;
+  75   1        ES = 1;
+  76   1      }
+  77          
+  78          void INTR() interrupt 4{
+  79   1        static int i=0;
+  80   1        if(RI == 1){
+  81   2          RI = 0;
+  82   2          array[i] = SBUF;
+  83   2          i++;
+  84   2          cmd = SBUF;
+  85   2          if(strstr(array,"open")){
+  86   3            SBUF = 'A';
+  87   3            memset(array,'\0',num);
+  88   3          }else if(strstr(array,"close")){
+  89   3            SBUF = 'B';
+  90   3            memset(array,'\0',num);
+  91   3          }
+  92   2        }
+  93   1      }
+  94          
+  95          void Delay2000ms()    //@11.0592MHz
+  96          {
+  97   1        unsigned char i, j, k;
+  98   1      
+  99   1        _nop_();
+ 100   1        i = 15;
+ 101   1        j = 2;
+ 102   1        k = 235;
+ 103   1        do
+ 104   1        {
+ 105   2          do
+ 106   2          {
+ 107   3            while (--k);
+ 108   3          } while (--j);
+ 109   2        } while (--i);
+ 110   1      }
+ 111          void Delay3ms()   //@11.0592MHz
+ 112          {
+ 113   1        unsigned char i, j;
+ 114   1      
+ 115   1        _nop_();
+ 116   1        _nop_();
+ 117   1        i = 33;
+C51 COMPILER V9.52.0.0   MIAN                                                              03/05/2024 21:26:38 PAGE 3   
+
+ 118   1        j = 66;
+ 119   1        do
+ 120   1        {
+ 121   2          while (--j);
+ 122   2        } while (--i);
+ 123   1      }
+ 124          void uart_init(){
+ 125   1        AUXR = 0X01;
+ 126   1        SCON = 0x50;
+ 127   1        TMOD &= 0x0f;
+ 128   1        TMOD |= 0x20;
+ 129   1        TH1 = 0XFD;
+ 130   1        TH1 = 0XFD;
+ 131   1        TR1 = 1;
+ 132   1      }
+ 133          void sendbyte(char data1){
+ 134   1        SBUF = data1;
+ 135   1        while(!TI);
+ 136   1        TI = 0;
+ 137   1      }
+ 138          void sendstring(char *pp){
+ 139   1        while(*pp != '\0'){
+ 140   2          sendbyte(*pp);
+ 141   2          pp++;
+ 142   2        }
+ 143   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    351    ----
+   CONSTANT SIZE    =     98    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     75    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

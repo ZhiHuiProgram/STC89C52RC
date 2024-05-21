@@ -1,0 +1,62 @@
+C51 COMPILER V9.52.0.0   KEYTEST                                                           02/29/2024 20:22:45 PAGE 1   
+
+
+C51 COMPILER V9.52.0.0, COMPILATION OF MODULE KEYTEST
+OBJECT MODULE PLACED IN keytest.OBJ
+COMPILER INVOKED BY: D:\keil\C51\BIN\C51.EXE keytest.c BROWSE DEBUG OBJECTEXTEND TABS(2)
+
+line level    source
+
+   1          #include"reg52.h"
+   2          #include"intrins.h"
+   3          void Delay100ms();
+   4          sbit ledD5 = P3^7;
+   5          sbit ledD6 = P3^6;
+   6          sbit key1 = P2^1;
+   7          sbit key2 = P2^0;
+   8          void main(){
+   9   1        ledD5 = 1;
+  10   1        ledD6 = 0;
+  11   1        while (1){
+  12   2          Delay100ms();
+  13   2          if(key1 == 0){
+  14   3            ledD5 = !ledD5;
+  15   3            ledD6 = !ledD6;
+  16   3          }else if (key2 == 0){
+  17   3            ledD5 = 1;
+  18   3            ledD6 = 0;
+  19   3          }
+  20   2        }
+  21   1      
+  22   1      }
+  23          void Delay100ms()   //@11.0592MHz
+  24          {
+  25   1        unsigned char i, j, k;
+  26   1      
+  27   1        _nop_();
+  28   1        _nop_();
+  29   1        i = 5;
+  30   1        j = 52;
+  31   1        k = 195;
+  32   1        do
+  33   1        {
+  34   2          do
+  35   2          {
+  36   3            while (--k);
+  37   3          } while (--j);
+  38   2        } while (--i);
+  39   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     40    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
